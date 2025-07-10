@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>XD-SITE</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://wallpapercave.com/wp/wp2757874.gif') center/cover no-repeat fixed;
+      color: #fff;
+      transition: background 0.3s, color 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    body.light {
+      background: url('https://images.unsplash.com/photo-1502082553048-f009c37129b9') center/cover no-repeat fixed;
+      color: #000;
+    }
+
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .toggle-mode {
+      position: absolute;
+top: 20px;
+      right: 20px;
+      font-size: 22px;
+      background: none;
+      border: none;
+      color: inherit;
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    .container {
+      text-align: center;
+      padding: 100px 20px;
+      z-index: 2;
+      position: relative;
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 100px);
+      gap: 30px;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    .btn {
+      width: 100px;
+      height: 100px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      text-decoration: none;
+      transition: transform 0.3s, box-shadow 0.3s;
+      border: none;
+      color: white;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+    }
+
+    .telegram  { background: #229ED9; }
+    .youtube   { background: #FF0000; }
+    .whatsapp  { background: #25D366; }
+    .github    { background: #171515; }
+    .netlify   { background: #00AD9F; }
+
+    body.light .btn {
+      filter: brightness(1.1);
+    }
+
+    /* Falling Stars */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      animation: fall 3s linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+top: -10px;
+        left: calc(100% * var(--x));
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        left: calc(100% * var(--x) + 50px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+
+  <button class="toggle-mode" onclick="toggleMode()">
+    <i class="fas fa-sun" id="modeIcon"></i>
+  </button>
+
+  <div class="container">
+    <h1>MOSES-XD</h1>
+    <div class="button-grid">
+      <a href="https://t.me/mrmosesxd" class="btn telegram"><i class="fab fa-telegram"></i></a>
+      <a href="https://youtube.com/@marinyamestudios" class="btn youtube"><i class="fab fa-youtube"></i></a>
+      <a href="https://wa.me/263787673035" class="btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://github.com/mrmosesclr" class="btn github"><i class="fab fa-github"></i></a>
+      <a href="https://marinyamestudios.netlify.app" class="btn netlify"><i class="fas fa-globe"></i></a>
+    </div>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle('light');
+      const icon = document.getElementById('modeIcon');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    }
+
+    // Create falling stars
+    const starField = document.getElementById("stars");
+for (let i = 0; i < 100; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.setProperty('--x', Math.random());
+      star.style.animationDuration = (Math.random() * 3 + 2) + 's';
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.top = Math.random() * 100 + 'vh';
+      starField.appendChild(star);
+    }
+  </script>
+</body>
+</html>
